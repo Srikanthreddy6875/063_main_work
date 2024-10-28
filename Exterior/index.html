@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Player</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="player-main-container">
+        <div class="main-container">
+            <div class="image-container" id="imageContainer">
+                <div id="cardElement">
+                    <div class="player">
+
+                        <img id="frame" src="" alt="360 Image">
+                        <li class="navigationlink"><a href="../interior/index.html">SEE INSIDE</a></li>
+
+                        <div class="zoom-parent">
+                            <div class="zoom-controls">
+                                <div class="toggoleswitch"><label class="toggleButton"><input type="checkbox"
+                                            class="toggleButton__checkbox" id="toggleView" /></label></div>
+                                <div class="player-controls actionicons" id="toggle360Btn"><i
+                                        class="fa-solid fa-rotate-right"></i></div>
+                                <div class="actionicons left-arrow"><i class="fa-solid fa-angle-left"></i></div>
+                                <div class="actionicons right-arrow"><i class="fa-solid fa-angle-right"></i></div>
+                                <div id="zoomInBtn" class="actionicons"><i class="fa-solid fa-plus"></i></div>
+                                <div id="zoomOutBtn" class="actionicons"><i class="fa-solid fa-minus"></i></div>
+                                <div id="fullscreenbtn" class="actionicons"><i class="fa-solid fa-expand"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner" id="loadingSpinner"></div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
