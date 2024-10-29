@@ -54,10 +54,10 @@
         const containerRect = card.getBoundingClientRect();
         const imageRect = frame.getBoundingClientRect();
 
-        const maxOffsetX = (imageRect.width - containerRect.width) / 2 / zoomFactor;
-        const maxOffsetY = (imageRect.height - containerRect.height) / 2 / zoomFactor;
+        const maxOffsetX = (imageRect.width - containerRect.width) / 2.5 / zoomFactor;
+        const maxOffsetY = (imageRect.height - containerRect.height) / 2.5 / zoomFactor;
         // Limit the offsets
-        frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
+        frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));//image can be moved left or right without going outside the container
         frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
 
         frame.style.transform = `scale(${zoomFactor}) translate(${frameOffsetX}px, ${frameOffsetY}px)`;
@@ -74,8 +74,8 @@
             frame.style.cursor = 'all-scroll';
             const containerRect = card.getBoundingClientRect();
             const imageRect = frame.getBoundingClientRect();
-            const maxOffsetX = (imageRect.width - containerRect.width) / 5 / zoomFactor;
-            const maxOffsetY = (imageRect.height - containerRect.height) / 5 / zoomFactor;
+            const maxOffsetX = (imageRect.width - containerRect.width) / 3 / zoomFactor;
+            const maxOffsetY = (imageRect.height - containerRect.height) / 3 / zoomFactor;
 
             frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
             frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
@@ -149,7 +149,7 @@
 
     frame.addEventListener('mousedown', (event) => {
         isDragging = true;
-        startMove = event.clientX;
+        startMove = event.clientX;//updated to the current mouse position
         startMoveY = event.clientY;
         event.preventDefault();
         frame.style.cursor = 'grabbing';
@@ -161,23 +161,23 @@
         if (!isDragging) return; //here condition false because when player rotate play in mouse move
 
         if (isZoomed) {
-            const dx = (event.clientX - startMove) / zoomFactor;
+            const dx = (event.clientX - startMove) / zoomFactor;//calculate the change in mouse position
             const dy = (event.clientY - startMoveY) / zoomFactor;
             frameOffsetX += dx;
             frameOffsetY += dy;
             limitImagePosition();
-            startMove = event.clientX;
+            startMove = event.clientX;//updated to the current mouse position
             startMoveY = event.clientY;
         } else {
-            const currentMove = event.clientX;
-            const playMove = currentMove - startMove;
+            const currentMove = event.clientX;// current horizontal position 
+            const playMove = currentMove - startMove;//This difference is stored in playMove, which will determine if the user is trying to rotate the play area.
 
-            if (playMove < -10) {
+            if (playMove < -5) {//here more then 10px move on left
                 currentFrame = (currentFrame % totalFrames) + 1;
                 startMove = currentMove;
                 updateFrame();
                 rotateLoader('left');
-            } else if (playMove > 10) {
+            } else if (playMove > 5) {
                 currentFrame = (currentFrame - 1 + totalFrames) % totalFrames;
                 startMove = currentMove;
                 updateFrame();
@@ -236,12 +236,12 @@
                 const currentMove = event.touches[0].clientX;
                 const playMove = currentMove - startMove;
 
-                if (playMove < -10) {
+                if (playMove < -5) {
                     currentFrame = (currentFrame % totalFrames) + 1;
                     startMove = currentMove;
                     updateFrame();
                     rotateLoader('left');
-                } else if (playMove > 10) {
+                } else if (playMove > 5) {
                     currentFrame = (currentFrame - 1 + totalFrames) % totalFrames;
                     startMove = currentMove;
                     updateFrame();
