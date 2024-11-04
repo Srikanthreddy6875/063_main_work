@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>360 Car Interior Viewer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./pannellum/pannellum.css">
+    <link rel="stylesheet" href="./pano.css">
+    <link rel="stylesheet" href="./pano_player_source/pano_player_lib.css">
 </head>
 
 <body>
@@ -17,21 +17,21 @@
                 <div id="cardElement">
                     <div class="player" id="playerContainer">
 
-                        <div id="panoramaViewer"></div>
+                        <div id="panoramaViewer">
+                            <li><a href="../Exterior/index.html">SEE OUTSIDE</a></li>
 
-                        <li><a href="../Exterior/index.html">SEE OUTSIDE</a></li>
-
-                        <div class="zoom-parent">
-                            <div class="zoom-controls">
-                                <div class="actionicons" id="autoRotateBtn"><i class="fa-solid fa-rotate-right"></i>
+                            <div class="zoom-parent">
+                                <div class="zoom-controls">
+                                    <div class="actionicons" id="autoRotateBtn"><i class="fa-solid fa-rotate-right"></i>
+                                    </div>
+                                    <div class="actionicons" id="leftBtn"><i class="fas fa-arrow-left"></i></div>
+                                    <div class="actionicons" id="rightBtn"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="actionicons" id="upBtn"><i class="fas fa-arrow-up"></i></div>
+                                    <div class="actionicons" id="downBtn"><i class="fas fa-arrow-down"></i></div>
+                                    <div class="actionicons" id="zoomInBtn"><i class="fas fa-search-plus"></i></div>
+                                    <div class="actionicons" id="zoomOutBtn"><i class="fas fa-search-minus"></i></div>
+                                    <div class="actionicons" id="fullscreenBtn"><i class="fa-solid fa-expand"></i></div>
                                 </div>
-                                <div class="actionicons" id="leftBtn"><i class="fas fa-arrow-left"></i></div>
-                                <div class="actionicons" id="rightBtn"><i class="fas fa-arrow-right"></i></div>
-                                <div class="actionicons" id="upBtn"><i class="fas fa-arrow-up"></i></div>
-                                <div class="actionicons" id="downBtn"><i class="fas fa-arrow-down"></i></div>
-                                <div class="actionicons" id="zoomInBtn"><i class="fas fa-search-plus"></i></div>
-                                <div class="actionicons" id="zoomOutBtn"><i class="fas fa-search-minus"></i></div>
-                                <div class="actionicons" id="fullscreenBtn"><i class="fa-solid fa-expand"></i></div>
                             </div>
                         </div>
 
@@ -46,8 +46,8 @@
             </div>
         </div>
     </div>
-    <script src="./pannellum/pannellum.js"></script>
-    <script src="./script.js"></script>
+    <script src="./pano_player_source/pano_player_lib.js"></script>
+    <script src="./pano.js"></script>
 
 </body>
 

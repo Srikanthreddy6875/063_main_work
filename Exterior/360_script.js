@@ -74,8 +74,8 @@
             frame.style.cursor = 'all-scroll';
             const containerRect = card.getBoundingClientRect();
             const imageRect = frame.getBoundingClientRect();
-            const maxOffsetX = (imageRect.width - containerRect.width) / 3 / zoomFactor;
-            const maxOffsetY = (imageRect.height - containerRect.height) / 3 / zoomFactor;
+            const maxOffsetX = (imageRect.width - containerRect.width) / 4 / zoomFactor;
+            const maxOffsetY = (imageRect.height - containerRect.height) / 4 / zoomFactor;
 
             frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
             frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));

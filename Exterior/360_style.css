@@ -22,8 +22,8 @@
 
 .image-container {
     position: relative;
-    width: 85%;
-    aspect-ratio: 16/9;
+    max-width: 1200px;
+    max-height: 675px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -93,6 +93,7 @@ li a {
     border-radius: 9999px;
     background-color: #777272;
     cursor: pointer;
+
     &:hover {
         background-color: #fc033d;
     }
@@ -164,29 +165,36 @@ li a {
     transition: transform 0.1s linear;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1440px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 16/9;
+        min-width: 80%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: 1440px;
+        max-height: 765px;
     }
 
     .zoom-parent {
-        bottom: 10px;
+        bottom: 25px;
     }
 
     .actionicons {
-        font-size: 18px;
+        font-size: 19px;
     }
 
     li a {
-        top: 9px;
-        font-size: 16px;
+        top: 25px;
+        font-size: 20px;
         padding: 3px 15px;
     }
 
     .spinner {
-        width: 37px;
-        height: 37px;
+        width: 40px;
+        height: 40px;
+        right: 20px;
+        top: 25px;
     }
 
     .toggleButton {
@@ -200,84 +208,79 @@ li a {
     }
 }
 
-
-@media screen and (max-width: 1024px) and (orientation: landscape) {
+@media screen and (max-width: 1024px) {
     .image-container {
-        width: 80%;
-        aspect-ratio: 3.4/2;
+        min-width: 80%;
+        min-height: 100%;
     }
+
+    #cardElement {
+        max-width: 1200px;
+        max-height: 576px;
+    }
+
+    .zoom-parent {
+        bottom: 10px;
+    }
+
+    .actionicons {
+        font-size: 19px;
+    }
+
     li a {
-        top: 14px;
-        font-size: 14px;
+        top: 23px;
+        font-size: 20px;
         padding: 3px 15px;
     }
-    .zoom-parent {
-        bottom: 5px;
-    }
-    .spinner {
-        width: 27px;
-        height: 27px;
-        border: 6px solid;
-        border-color: #777779;
-        border-right-color: #dbdcef;
-        top: 14px;
-        right: 19px;
-    }
-}
 
-@media screen and (max-width: 890px) and (orientation: landscape) {
-    .image-container {
-        width: 80%;
-        aspect-ratio: 4/2;
-    }
-    li a {
-        top: 14px;
-        font-size: 14px;
-        padding: 3px 15px;
-    }
-    .zoom-parent {
-        bottom: 5px;
-    }
     .spinner {
-        width: 27px;
-        height: 27px;
-        border: 6px solid;
-        border-color: #777779;
-        border-right-color: #dbdcef;
-        top: 14px;
-        right: 19px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .toggleButton {
+        width: 45px;
+        height: 25 px;
+    }
+
+    .toggleButton__checkbox {
+        width: 19px;
+        height: 19px;
     }
 }
 
 @media screen and (max-width: 768px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 4/3;
+        max-width: 100%;
+        min-height: 100%;
     }
 
     #cardElement {
         max-width: 768px;
-        max-height: 400px;
+        max-height: 432px;
     }
 
     .zoom-parent {
-        bottom: 5px;
+        bottom: 9px;
     }
 
     .actionicons {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     li a {
-        top: 9px;
-        font-size: 16px;
+        top: 20px;
+        font-size: 17px;
         padding: 3px 15px;
     }
 
     .spinner {
-        width: 32px;
-        height: 32px;
-        top: 4px;
+        width: 35px;
+        height: 35px;
+        top: 5px;
+        border: 5px solid;
+        border-color: #777779;
+        border-right-color: #dbdcef;
     }
 
     .toggleButton {
@@ -291,133 +294,19 @@ li a {
     }
 }
 
-@media screen and (max-width: 768px) and (orientation: landscape) {
-    .image-container {
-        width: 85%;
-        aspect-ratio: 3.5/2;
-    }
-    li a {
-        top: 5px;
-        font-size: 14px;
-        padding: 3px 15px;
-    }
-    .zoom-parent {
-        bottom: 5px;
-    }
-    .spinner {
-        width: 27px;
-        height: 27px;
-        border: 6px solid;
-        border-color: #777779;
-        border-right-color: #dbdcef;
-        top: 5px;
-        right: 15px;
-    }
-}
-@media screen and (max-width: 720px) and (orientation: landscape) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 3.5/2;
-    }.zoom-parent {
-        bottom: 5px;
-    }
-}
-@media screen and (max-width: 560px) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-
-    #cardElement {
-        max-width: 560px;
-        max-height: 350px;
-    }
-
-    .zoom-parent {
-        bottom: 5px;
-    }
-
-    .actionicons {
-        font-size: 15px;
-    }
-
-    li a {
-        top: 5px;
-        font-size: 14px;
-        padding: 3px 15px;
-    }
-
-    .spinner {
-        width: 27px;
-        height: 27px;
-        border: 6px solid;
-        border-color: #777779;
-        border-right-color: #dbdcef;
-        top: 5px;
-        right: 15px;
-    }
-
-    .toggleButton {
-        width: 41px;
-        height: 23px;
-    }
-
-    .toggleButton__checkbox {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-@media screen and (max-width: 560px) and (orientation: landscape) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-    li a {
-        top: 5px;
-        font-size: 14px;
-        padding: 3px 15px;
-    }
-    .zoom-parent {
-        bottom: 10px;
-    }
-    .spinner {
-        width: 27px;
-        height: 27px;
-        border: 6px solid;
-        border-color: #777779;
-        border-right-color: #dbdcef;
-        top: 24px;
-        right: 15px;
-    }
-}
-@media screen and (max-width: 545px) and (orientation: landscape) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 4/2;
-    }
-    .zoom-parent {
-        bottom: 5px;
-    }
-    li a {
-        top: 5px;
-        font-size: 14px;
-        padding: 3px 15px;
-    }
-}
 @media screen and (max-width: 425px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 16/9;
+        max-width: 100%;
+        min-height: 100%;
     }
 
     #cardElement {
         max-width: 425px;
-        max-height: 300px;
+        max-height: 240px;
     }
 
     .zoom-parent {
-        bottom: 3px;
+        bottom: 6px;
     }
 
     .actionicons {
@@ -425,19 +314,18 @@ li a {
     }
 
     li a {
-        top: 4px;
-        font-size: 12px;
+        top: 17px;
+        font-size: 14px;
         padding: 2px 10px;
     }
 
     .spinner {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
+        top: 6px;
         border: 5px solid;
         border-color: #777779;
         border-right-color: #dbdcef;
-        top: 6px;
-        right: 6px;
     }
 
     .toggleButton {
@@ -451,17 +339,10 @@ li a {
     }
 }
 
-@media screen and (max-width: 425px) and (orientation: landscape) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-}
-
 @media screen and (max-width: 375px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 16/10;
+        max-width: 100%;
+        min-height: 100%;
     }
 
     #cardElement {
@@ -479,7 +360,7 @@ li a {
     }
 
     li a {
-        top: 5px;
+        top: 14px;
         font-size: 12px;
         padding: 2px 8px;
     }
@@ -505,22 +386,15 @@ li a {
     }
 }
 
-@media screen and (max-width: 375px) and (orientation: landscape) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-}
-
 @media screen and (max-width: 320px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 16/9;
+        max-width: 100%;
+        min-height: 100%;
     }
 
     #cardElement {
         max-width: 320px;
-        max-height: 200px;
+        max-height: 180px;
     }
 
     .zoom-parent {
@@ -533,7 +407,7 @@ li a {
     }
 
     li a {
-        top: 4px;
+        top: 11px;
         font-size: 11px;
         padding: 2px 8px;
     }
@@ -560,61 +434,265 @@ li a {
     }
 }
 
-@media screen and (max-width: 320px) and (orientation: landscape) {
+@media screen and (max-width: 280px) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
-    }
-}
-
-@media screen and (max-width: 260px) {
-    .image-container {
-        width: 100%;
-        aspect-ratio: 4/3;
+        max-width: 100%;
+        min-height: 100%;
     }
 
     #cardElement {
-        max-width: 260px;
-        max-height: 200px;
+        max-width: 280px;
+        max-height: 160px;
     }
 
     .zoom-parent {
-        bottom: 2px;
+        bottom: 3px;
     }
 
     .actionicons {
-        font-size: 10px;
-        margin: 0 3px;
+        font-size: 13px;
+        margin: 0 6px;
+        padding: 4px 5px;
     }
 
     li a {
-        top: 3px;
+        top: 8px;
         font-size: 11px;
-        padding: 1px 7px;
+        padding: 2px 8px;
     }
 
     .spinner {
-        width: 18px;
-        height: 18px;
-        border: 3px solid;
+        width: 22px;
+        height: 22px;
+        border: 4px solid;
         border-color: #777779;
         border-right-color: #dbdcef;
-        right: 3px;
-        top: 3px;
+        top: 5px;
+        right: 5px;
+
     }
+
     .toggleButton {
-        width: 32px;
-        height: 19px;
+        width: 38px;
+        height: 20px;
     }
+
     .toggleButton__checkbox {
-        left: 2px;
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
     }
 }
-@media screen and (max-width: 260px) and (orientation: landscape) {
+
+ @media screen and (max-width: 1024px) and (orientation: landscape) {
     .image-container {
-        width: 100%;
-        aspect-ratio: 1/1;
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(600px, 82vw, 1200px);
+        max-height: clamp(300px, 100vh, 675px);
+    }
+
+    .zoom-parent {
+        bottom: 25px;
+    }
+
+    .actionicons, li a {
+        font-size: 18px;
+    }
+
+    li a {
+        top: 25px;
+        padding: 3px 12px;
+    }
+
+    .spinner {
+        width: 35px;
+        height: 35px;
+        top: 25px;
+        right: 15px;
+    }
+
+    .toggleButton {
+        width: 42px;
+        height: 22px;
+    }
+
+    .toggleButton__checkbox {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(400px, 88vw, 768px);
+        max-height: clamp(230px, 100vh, 432px);
+    }
+
+    .zoom-parent {
+        bottom: 25px;
+    }
+
+    .actionicons {
+        font-size: 16px;
+    }
+
+    li a {
+        top: 18px;
+        font-size: 15px;
+        padding: 3px 10px;
+    }
+
+    .spinner {
+        width: 30px;
+        height: 30px;
+        top: 20px;
+        right: 10px;
+    }
+
+    .toggleButton {
+        width: 40px;
+        height: 21px;
+    }
+
+    .toggleButton__checkbox {
+        width: 17px;
+        height: 17px;
+    }
+} 
+
+@media screen and (max-width: 425px) and (orientation: landscape) {
+    .image-container {
+        max-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(300px, 100vw, 425px);
+        max-height: clamp(180px, 100vh, 240px);
+    }
+
+    .zoom-parent {
+        bottom: 6px;
+    }
+
+    .actionicons {
+        font-size: 14px;
+    }
+
+    li a {
+        top: 16px;
+        font-size: 13px;
+        padding: 2px 8px;
+    }
+
+    .spinner {
+        width: 28px;
+        height: 28px;
+        top: 4px;
+        right: 8px;
+    }
+
+    .toggleButton {
+        width: 38px;
+        height: 20px;
+    }
+
+    .toggleButton__checkbox {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (max-width: 375px) and (orientation: landscape) {
+    .image-container {
+        max-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(280px, 100vw, 375px);
+        max-height: clamp(160px, 100vh, 211px);
+    }
+
+    .zoom-parent {
+        bottom: 4px;
+    }
+
+    .actionicons {
+        font-size: 13px;
+    }
+
+    li a {
+        top: 14px;
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+
+    .spinner {
+        width: 24px;
+        height: 24px;
+        top: 4px;
+        right: 5px;
+    }
+
+    .toggleButton {
+        width: 36px;
+        height: 20px;
+    }
+
+    .toggleButton__checkbox {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (max-width: 320px) and (orientation: landscape) {
+    .image-container {
+        max-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(250px, 100vw, 320px);
+        max-height: clamp(150px, 100vh, 180px);
+    }
+
+    .zoom-parent {
+        bottom: 3px;
+    }
+
+    .actionicons {
+        font-size: 12px;
+    }
+
+    li a {
+        top: 12px;
+        font-size: 11px;
+        padding: 2px 7px;
+    }
+
+    .spinner {
+        width: 22px;
+        height: 22px;
+        top: 4px;
+        right: 4px;
+    }
+
+    .toggleButton {
+        width: 35px;
+        height: 18px;
+    }
+
+    .toggleButton__checkbox {
+        width: 15px;
+        height: 15px;
     }
 }

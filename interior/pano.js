@@ -20,13 +20,13 @@
         "yaw": 0,
         "pitch": -15,
         "hfov": 110,
-        "maxHfov": 120,
-        "minHfov": 30,
+        "maxHfov": 130,
+        "minHfov": 40,
         "keyboardZoom": true,
         "showFullscreenCtrl": false,
         "disableContextMenu": true,
         "autoRotate": -2,
-        "multiResMinHfov": 40,
+        "multiResMinHfov": 20,
         "hotSpots": [
             {
                 "pitch": -13,
@@ -191,5 +191,3 @@
     document.getElementById('panoramaViewer').addEventListener('touchstart', resetButtonColors);
     document.getElementById('panoramaViewer').addEventListener('click', resetButtonColors);
 })();
-
-
