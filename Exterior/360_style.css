@@ -84,6 +84,11 @@ li a {
     width: 100%;
 }
 
+
+.zoom-parent.fullscreen {
+    bottom: 8px;
+}
+
 .toggleButton {
     position: relative;
     display: block;
@@ -164,6 +169,9 @@ li a {
     transform: rotate(0deg);
     transition: transform 0.1s linear;
 }
+.spinner.spinnerstyle {
+    top: 9px;
+}
 
 @media screen and (max-width: 1440px) {
     .image-container {
@@ -177,7 +185,7 @@ li a {
     }
 
     .zoom-parent {
-        bottom: 25px;
+        bottom: 20px;
     }
 
     .actionicons {
@@ -185,7 +193,7 @@ li a {
     }
 
     li a {
-        top: 25px;
+        top: 20px;
         font-size: 20px;
         padding: 3px 15px;
     }
@@ -222,20 +230,27 @@ li a {
     .zoom-parent {
         bottom: 10px;
     }
+    
+    .zoom-parent.fullscreen {
+        bottom: 8px;
+    }
 
     .actionicons {
         font-size: 19px;
     }
 
     li a {
-        top: 23px;
+        top: 5px;
         font-size: 20px;
         padding: 3px 15px;
     }
 
     .spinner {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
+    }
+    .spinner.spinnerstyle {
+        top: 5px;
     }
 
     .toggleButton {
@@ -263,13 +278,17 @@ li a {
     .zoom-parent {
         bottom: 9px;
     }
+        
+    .zoom-parent.fullscreen {
+        bottom: 5px;
+    }
 
     .actionicons {
         font-size: 17px;
     }
 
     li a {
-        top: 20px;
+        top: 5px;
         font-size: 17px;
         padding: 3px 15px;
     }
@@ -278,9 +297,13 @@ li a {
         width: 35px;
         height: 35px;
         top: 5px;
-        border: 5px solid;
+        right: 5px;
+        border: 6px solid;
         border-color: #777779;
         border-right-color: #dbdcef;
+    }
+    .spinner.spinnerstyle {
+        top: 4px;
     }
 
     .toggleButton {
@@ -294,7 +317,7 @@ li a {
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 440px) {
     .image-container {
         max-width: 100%;
         min-height: 100%;
@@ -306,15 +329,19 @@ li a {
     }
 
     .zoom-parent {
-        bottom: 6px;
+        bottom: 4px;
     }
+
+    .zoom-parent.fullscreen {
+        bottom: 4px;
+    }    
 
     .actionicons {
         font-size: 14px;
     }
 
     li a {
-        top: 17px;
+        top: 4px;
         font-size: 14px;
         padding: 2px 10px;
     }
@@ -323,9 +350,13 @@ li a {
         width: 30px;
         height: 30px;
         top: 6px;
+        right: 7px;
         border: 5px solid;
         border-color: #777779;
         border-right-color: #dbdcef;
+    }
+    .spinner.spinnerstyle {
+        top: 4px;
     }
 
     .toggleButton {
@@ -353,6 +384,15 @@ li a {
     .zoom-parent {
         bottom: 5px;
     }
+    
+    .zoom-parent.fullscreen {
+        bottom: 0px;
+    }
+
+    .zoom-parent.fullscreen {
+        bottom: 4px;
+    }
+    
 
     .actionicons {
         font-size: 14px;
@@ -360,7 +400,7 @@ li a {
     }
 
     li a {
-        top: 14px;
+        top: 4px;
         font-size: 12px;
         padding: 2px 8px;
     }
@@ -373,6 +413,10 @@ li a {
         border-right-color: #dbdcef;
         top: 5px;
         right: 5px;
+    }
+
+    .spinner.spinnerstyle {
+        top: 4px;
     }
 
     .toggleButton {
@@ -401,13 +445,18 @@ li a {
         bottom: 3px;
     }
 
+    
+    .zoom-parent.fullscreen {
+        bottom: 4px;
+    }
+
     .actionicons {
         font-size: 13px;
         margin: 0 6px;
     }
 
     li a {
-        top: 11px;
+        top: 4px;
         font-size: 11px;
         padding: 2px 8px;
     }
@@ -421,6 +470,9 @@ li a {
         top: 5px;
         right: 5px;
 
+    }
+    .spinner.spinnerstyle {
+        top: 3px;
     }
 
     .toggleButton {
@@ -448,6 +500,10 @@ li a {
     .zoom-parent {
         bottom: 3px;
     }
+    
+    .zoom-parent.fullscreen {
+        bottom: 3px;
+    }
 
     .actionicons {
         font-size: 13px;
@@ -469,12 +525,59 @@ li a {
         border-right-color: #dbdcef;
         top: 5px;
         right: 5px;
-
+    }
+    .spinner.spinnerstyle {
+        top: 3px;
     }
 
     .toggleButton {
         width: 38px;
         height: 20px;
+    }
+
+    .toggleButton__checkbox {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(600px, 100vw, 1200px);
+        max-height: clamp(300px, 100vh, 775px);
+    }
+
+    .zoom-parent {
+        bottom: 5px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 10px;
+    }
+
+    .actionicons, li a {
+        font-size: 18px;
+    }
+
+    li a {
+        top: 12px;
+        padding: 3px 12px;
+    }
+
+    .spinner {
+        width: 42px;
+        height: 42px;
+        top: 9px;
+        right: 10px;
+    }
+
+    .toggleButton {
+        width: 42px;
+        height: 22px;
     }
 
     .toggleButton__checkbox {
@@ -490,12 +593,15 @@ li a {
     }
 
     #cardElement {
-        max-width: clamp(600px, 82vw, 1200px);
+        max-width: clamp(600px, 100vw, 1200px);
         max-height: clamp(300px, 100vh, 675px);
     }
 
     .zoom-parent {
-        bottom: 25px;
+        bottom: 5px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 8px;
     }
 
     .actionicons, li a {
@@ -503,15 +609,15 @@ li a {
     }
 
     li a {
-        top: 25px;
+        top: 12px;
         padding: 3px 12px;
     }
 
     .spinner {
         width: 35px;
         height: 35px;
-        top: 25px;
-        right: 15px;
+        top: 9px;
+        right: 10px;
     }
 
     .toggleButton {
@@ -525,6 +631,100 @@ li a {
     }
 }
 
+
+
+@media screen and (max-width: 950px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(600px, 82vw, 900px);
+        max-height: clamp(300px, 100vh, 480px);
+    }
+
+    .zoom-parent {
+        bottom: 5px;
+    }
+
+    .zoom-parent.fullscreen {
+        bottom: 8px;
+    }
+
+    .actionicons, li a {
+        font-size: 18px;
+    }
+
+    li a {
+        top: 8px;
+        padding: 3px 12px;
+    }
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        top: 8px;
+        right: 10px;
+    }
+
+    
+
+    .toggleButton {
+        width: 42px;
+        height: 22px;
+    }
+
+    .toggleButton__checkbox {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (max-width: 890px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(600px, 73vw, 900px);
+        max-height: clamp(300px, 100vh, 480px);
+    }
+
+    .zoom-parent {
+        bottom: 5px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 7px;
+    }
+
+    .actionicons, li a {
+        font-size: 18px;
+    }
+
+    li a {
+        top: 8px;
+        padding: 3px 12px;
+    }
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        top: 8px;
+        right: 10px;
+    }
+
+    .toggleButton {
+        width: 42px;
+        height: 22px;
+    }
+
+    .toggleButton__checkbox {
+        width: 18px;
+        height: 18px;
+    }
+}
 @media screen and (max-width: 768px) and (orientation: landscape) {
     .image-container {
         min-width: 100%;
@@ -532,12 +732,15 @@ li a {
     }
 
     #cardElement {
-        max-width: clamp(400px, 88vw, 768px);
+        max-width: clamp(400px, 87vw, 768px);
         max-height: clamp(230px, 100vh, 432px);
     }
 
     .zoom-parent {
-        bottom: 25px;
+        bottom: 5px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 6px;
     }
 
     .actionicons {
@@ -545,16 +748,126 @@ li a {
     }
 
     li a {
-        top: 18px;
+        top: 5px;
         font-size: 15px;
         padding: 3px 10px;
     }
 
     .spinner {
-        width: 30px;
-        height: 30px;
-        top: 20px;
+        width: 38px;
+        height: 38px;
+        top: 8px;
         right: 10px;
+        border: 6px solid;
+        border-color: #777779;
+        border-right-color: #dbdcef;
+    }
+    .spinner.spinnerstyle {
+        top: 4px;
+    }
+
+    .toggleButton {
+        width: 40px;
+        height: 21px;
+    }
+
+    .toggleButton__checkbox {
+        width: 17px;
+        height: 17px;
+    }
+} 
+@media screen and (max-width: 720px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(400px, 100vw, 768px);
+        max-height: clamp(230px, 100vh, 432px);
+    }
+
+    .zoom-parent {
+        bottom: 6px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 6px;
+    }
+
+    .actionicons {
+        font-size: 16px;
+    }
+
+    li a {
+        top: 5px;
+        font-size: 15px;
+        padding: 3px 10px;
+    }
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        top: 8px;
+        right: 10px;
+        border: 6px solid;
+        border-color: #777779;
+        border-right-color: #dbdcef;
+    }
+    .spinner.spinnerstyle {
+        top: 4px;
+    }
+
+    .toggleButton {
+        width: 40px;
+        height: 21px;
+    }
+
+    .toggleButton__checkbox {
+        width: 17px;
+        height: 17px;
+    }
+} 
+
+@media screen and (max-width: 675px) and (orientation: landscape) {
+    .image-container {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #cardElement {
+        max-width: clamp(400px, 100vw, 768px);
+        max-height: clamp(230px, 100vh, 432px);
+    }
+
+    .zoom-parent {
+        bottom: 6px;
+    }
+
+    .zoom-parent.fullscreen {
+        bottom: 5px;
+    }
+
+    .actionicons {
+        font-size: 16px;
+    }
+
+    li a {
+        top: 5px;
+        font-size: 15px;
+        padding: 3px 10px;
+    }
+
+    .spinner {
+        width: 38px;
+        height: 38px;
+        top: 8px;
+        right: 10px;
+        border: 6px solid;
+        border-color: #777779;
+        border-right-color: #dbdcef;
+    }
+    .spinner.spinnerstyle {
+        top: 4px;
     }
 
     .toggleButton {
@@ -581,6 +894,9 @@ li a {
 
     .zoom-parent {
         bottom: 6px;
+    }
+    .zoom-parent.fullscreen {
+        bottom: 0px;
     }
 
     .actionicons {
@@ -624,6 +940,10 @@ li a {
 
     .zoom-parent {
         bottom: 4px;
+    }   
+
+    .zoom-parent.fullscreen {
+        bottom: 0px;
     }
 
     .actionicons {
@@ -669,6 +989,9 @@ li a {
         bottom: 3px;
     }
 
+    .zoom-parent.fullscreen {
+        bottom: 0px;
+    }
     .actionicons {
         font-size: 12px;
     }

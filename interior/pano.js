@@ -9,7 +9,7 @@
     const fullscreenBtn = document.getElementById('fullscreenBtn');
     const autoRotateBtn = document.getElementById('autoRotateBtn');
     let isAutoRotating = false; // Track the auto-rotation state
-    const rotationStep = 30; // Rotation step size for manual viewer control
+    const rotationStep = 40; // Rotation step size for manual viewer control
 
     const viewer = pannellum.viewer('panoramaViewer', {
         "type": "equirectangular",
@@ -21,7 +21,7 @@
         "pitch": -15,
         "hfov": 110,
         "maxHfov": 130,
-        "minHfov": 40,
+        "minHfov": 20,
         "keyboardZoom": true,
         "showFullscreenCtrl": false,
         "disableContextMenu": true,
@@ -178,16 +178,4 @@
         }
     });
 
-    function resetButtonColors() {
-        autoRotateBtn.style.backgroundColor = '#555555';
-        leftbtn.style.backgroundColor = '';
-        rightBtn.style.backgroundColor = '';
-        upBtn.style.backgroundColor = '';
-        downBtn.style.backgroundColor = '';
-        zoomInBtn.style.backgroundColor = '';
-        zoomOutBtn.style.backgroundColor = '';
-    }
-
-    document.getElementById('panoramaViewer').addEventListener('touchstart', resetButtonColors);
-    document.getElementById('panoramaViewer').addEventListener('click', resetButtonColors);
 })();

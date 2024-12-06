@@ -24,7 +24,7 @@
     let autoRotateInterval;
 
     let zoomFactor = 1; //initially zoom level
-    const zoomStep = 0.2; // The zoom increases/decreases per step
+    const zoomStep = 0.2 // The zoom increases/decreases per step
     const maxZoom = 5;
     const minZoom = 1;
 
@@ -33,6 +33,11 @@
     let initialZoomFactor = 1;
     let cumulativeRotation = 0;
     let hasAutoRotatedOnce = false;
+
+    let holdInterval; // To store the interval ID
+    let holdDelay = 80; // Delay in milliseconds for continuous frame change from left & right
+    let zoomHoldInterval; // To store the interval ID for zoom hold
+    const zoomHoldDelay = 80; // Delay in milliseconds for continuous zooming
 
     function updateFrame() {
         frame.src = toggleView.checked ? `range-open/${currentFrame}.jpg` : `range/${currentFrame}.jpg`;
@@ -54,8 +59,8 @@
         const containerRect = card.getBoundingClientRect();
         const imageRect = frame.getBoundingClientRect();
 
-        const maxOffsetX = (imageRect.width - containerRect.width) / 2.5 / zoomFactor;
-        const maxOffsetY = (imageRect.height - containerRect.height) / 2.5 / zoomFactor;
+        const maxOffsetX = (imageRect.width - containerRect.width) / 2.8 / zoomFactor;
+        const maxOffsetY = (imageRect.height - containerRect.height) / 2.8 / zoomFactor;
         // Limit the offsets
         frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));//image can be moved left or right without going outside the container
         frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
@@ -74,13 +79,14 @@
             frame.style.cursor = 'all-scroll';
             const containerRect = card.getBoundingClientRect();
             const imageRect = frame.getBoundingClientRect();
-            const maxOffsetX = (imageRect.width - containerRect.width) / 4 / zoomFactor;
-            const maxOffsetY = (imageRect.height - containerRect.height) / 4 / zoomFactor;
+            const maxOffsetX = (imageRect.width - containerRect.width) / 5.2 / zoomFactor;
+            const maxOffsetY = (imageRect.height - containerRect.height) / 5.2 / zoomFactor;
 
             frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
             frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
         }
         frame.style.transform = `scale(${zoomFactor}) translate(${frameOffsetX}px, ${frameOffsetY}px)`;
+        frame.style.transition = 'transform 0.3s ease-out';
     }
 
     function autoRotate360() {
@@ -88,7 +94,7 @@
             currentFrame = (currentFrame % totalFrames) + 1;
             updateFrame();
             rotateLoader('left');
-        }, 100);
+        }, 70);
     }
 
     function stopAutoRotate360() {
@@ -172,12 +178,12 @@
             const currentMove = event.clientX;// current horizontal position 
             const playMove = currentMove - startMove;//This difference is stored in playMove, which will determine if the user is trying to rotate the play area.
 
-            if (playMove < -5) {//here more then 10px move on left
+            if (playMove < -8) {//here more then 10px move on left
                 currentFrame = (currentFrame % totalFrames) + 1;
                 startMove = currentMove;
                 updateFrame();
                 rotateLoader('left');
-            } else if (playMove > 5) {
+            } else if (playMove > 8) {
                 currentFrame = (currentFrame - 1 + totalFrames) % totalFrames;
                 startMove = currentMove;
                 updateFrame();
@@ -271,36 +277,121 @@
         chnageframelink.style.display = 'flex';
     });
 
+    const startHoldRotation = (direction) => {
+        holdInterval = setInterval(() => {
+            if (direction === 'left') {
+                currentFrame = (currentFrame + 1) % totalFrames;
+                rotateLoader('right');
+            } else if (direction === 'right') {
+                currentFrame = (currentFrame - 1 + totalFrames) % totalFrames;
+                rotateLoader('left');
+            }
+            updateFrame();
+        }, holdDelay);
+    };
+    
+    const stopHoldRotation = () => {
+        if (holdInterval) {
+            clearInterval(holdInterval);
+            holdInterval = null;
+        }
+    };
+    
+    // Right Arrow Event Listeners
+    rightArrow.addEventListener('mousedown', () => {
+        startHoldRotation('right');
+        rightArrow.style.backgroundColor = 'green';
+        leftArrow.style.backgroundColor = '';
+    });
+    
+    rightArrow.addEventListener('mouseup', stopHoldRotation);
+    rightArrow.addEventListener('mouseleave', stopHoldRotation); // Stop hold if cursor leaves the button
+
     rightArrow.addEventListener('click', () => {
+        stopHoldRotation(); // Ensure no interval overlap
         currentFrame = (currentFrame - 1 + totalFrames) % totalFrames;
         updateFrame();
         rotateLoader('left');
         rightArrow.style.backgroundColor = 'green';
         leftArrow.style.backgroundColor = '';
     });
+    
+
+    // Left Arrow Event Listeners
+    leftArrow.addEventListener('mousedown', () => {
+        startHoldRotation('left');
+        leftArrow.style.backgroundColor = 'green';
+        rightArrow.style.backgroundColor = '';
+    });
+    
+    leftArrow.addEventListener('mouseup', stopHoldRotation);
+    leftArrow.addEventListener('mouseleave', stopHoldRotation);
 
     leftArrow.addEventListener('click', () => {
-        currentFrame = (currentFrame % totalFrames) + 1;
+        stopHoldRotation(); // Ensure no interval overlap
+        currentFrame = (currentFrame + 1) % totalFrames;
         updateFrame();
         rotateLoader('right');
         leftArrow.style.backgroundColor = 'green';
         rightArrow.style.backgroundColor = '';
     });
+    
 
-    zoomInBtn.addEventListener('click', () => {
-        zoomFactor = Math.min(maxZoom, zoomFactor + zoomStep);
-        isZoomed = zoomFactor > 1;
-        updateZoom();
-        zoomInBtn.style.backgroundColor = 'green';
-        zoomOutBtn.style.background = '';
+    const startZoomHold = (action) => {
+        stopZoomHold(); // Ensure no duplicate intervals
+        zoomHoldInterval = setInterval(() => {
+            if (action === 'zoomIn') {
+                zoomFactor = Math.min(maxZoom, zoomFactor + zoomStep);
+            } else if (action === 'zoomOut') {
+                zoomFactor = Math.max(minZoom, zoomFactor - zoomStep);
+            }
+            isZoomed = zoomFactor > 1;
+            updateZoom();
+        }, zoomHoldDelay);
+    };
+    
+    const stopZoomHold = () => {
+        if (zoomHoldInterval) {
+            clearInterval(zoomHoldInterval);
+            zoomHoldInterval = null;
+        }
+    };
+
+    // Zoom Out Event Listeners
+    zoomOutBtn.addEventListener('mousedown', () => {
+        startZoomHold('zoomOut');
+        zoomOutBtn.style.backgroundColor = 'green';
+        zoomInBtn.style.backgroundColor = '';
     });
 
+    zoomOutBtn.addEventListener('mouseup', stopZoomHold);
+    zoomOutBtn.addEventListener('mouseleave', stopZoomHold);
+
     zoomOutBtn.addEventListener('click', () => {
+        stopZoomHold(); // Ensure no interval overlap
         zoomFactor = Math.max(minZoom, zoomFactor - zoomStep);
         isZoomed = zoomFactor > 1;
         updateZoom();
         zoomOutBtn.style.backgroundColor = 'green';
-        zoomInBtn.style.background = '';
+        zoomInBtn.style.backgroundColor = '';
+    });
+
+        // Zoom In Event Listeners
+    zoomInBtn.addEventListener('mousedown', () => {
+        startZoomHold('zoomIn');
+        zoomInBtn.style.backgroundColor = 'green';
+        zoomOutBtn.style.backgroundColor = '';
+    });
+
+    zoomInBtn.addEventListener('mouseup', stopZoomHold);
+    zoomInBtn.addEventListener('mouseleave', stopZoomHold);
+    zoomInBtn.addEventListener('click', () => {
+        stopZoomHold(); // Ensure no interval overlap
+        zoomFactor = Math.min(maxZoom, zoomFactor + zoomStep);
+        isZoomed = zoomFactor > 1;
+        updateZoom();
+        zoomInBtn.style.backgroundColor = 'green';
+        zoomOutBtn.style.backgroundColor = '';
     });
 
     frame.addEventListener('wheel', (event) => {
@@ -326,6 +417,19 @@
 
     document.addEventListener('fullscreenchange', () => {
         !document.fullscreenElement ? fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i>' : fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i>';
+
+        const ControlBar = document.querySelector(".zoom-parent");
+        const Spinnerele = document.querySelector('.spinner');
+        const topAnchor = document.querySelector('.navlink');
+        if (document.fullscreenElement) {
+            ControlBar.classList.add("fullscreen");
+            Spinnerele.classList.add("spinnerstyle");
+            topAnchor.classList.add("topbtn");
+        } else {
+            ControlBar.classList.remove("fullscreen");
+            Spinnerele.classList.remove("spinnerstyle");
+            Spinnerele.classList.remove("topbtn");
+        }
     });
 
     updateFrame();
