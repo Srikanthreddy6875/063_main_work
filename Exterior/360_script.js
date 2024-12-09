@@ -58,15 +58,21 @@
     function limitImagePosition() {
         const containerRect = card.getBoundingClientRect();
         const imageRect = frame.getBoundingClientRect();
-
-        const maxOffsetX = (imageRect.width - containerRect.width) / 2.8 / zoomFactor;
-        const maxOffsetY = (imageRect.height - containerRect.height) / 2.8 / zoomFactor;
-        // Limit the offsets
-        frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));//image can be moved left or right without going outside the container
+    
+        // Calculate max allowable offsets based on zoom
+        const maxOffsetX = Math.max(0, (imageRect.width - containerRect.width) / 3 / zoomFactor);
+        const maxOffsetY = Math.max(0, (imageRect.height - containerRect.height) / 3 / zoomFactor);
+    
+        // Limit offsets to ensure edges do not expose the background
+        frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
         frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
-
+    
+        // Apply transformations
         frame.style.transform = `scale(${zoomFactor}) translate(${frameOffsetX}px, ${frameOffsetY}px)`;
+        console.log("zoomFactor",zoomFactor);
+        
     }
+    
 
     // Updates the zoom level and applies limits to the image's position
     function updateZoom() {
@@ -79,8 +85,8 @@
             frame.style.cursor = 'all-scroll';
             const containerRect = card.getBoundingClientRect();
             const imageRect = frame.getBoundingClientRect();
-            const maxOffsetX = (imageRect.width - containerRect.width) / 5.2 / zoomFactor;
-            const maxOffsetY = (imageRect.height - containerRect.height) / 5.2 / zoomFactor;
+            const maxOffsetX = (imageRect.width - containerRect.width) / 6 / zoomFactor;
+            const maxOffsetY = (imageRect.height - containerRect.height) / 6 / zoomFactor;
 
             frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
             frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
@@ -101,40 +107,45 @@
         clearInterval(autoRotateInterval);
     }
 
-    function autoRotateOnce() {
-        if (hasAutoRotatedOnce) return;
-
+    function autoRotate(times=1) {
         let frameCount = 0;
+        const framesPerRotation = totalFrames * times; // Total frames for the given rotations
+    
         autoRotateOnceInterval = setInterval(() => {
             currentFrame = (currentFrame % totalFrames) + 1;
             updateFrame();
             rotateLoader('left');
             frameCount++;
-            if (frameCount >= totalFrames) {
+    
+            // Check if the specified number of rotations is complete
+            if (frameCount >= framesPerRotation) {
                 clearInterval(autoRotateOnceInterval);
                 hasAutoRotatedOnce = true;
             }
         }, 100);
     }
-
-    function stopAutoRotateOnce() {
+    
+    function stopAutoRotate() {
         clearInterval(autoRotateOnceInterval);
     }
-
+    
     window.addEventListener('load', () => {
-        autoRotateOnce();
+        autoRotate(); // Rotate 2 times
+    
         frame.addEventListener('mousedown', () => {
-            stopAutoRotateOnce();
+            stopAutoRotate();
             toggle360Btn.style.backgroundColor = '#555555';
             leftArrow.style.backgroundColor = '#555555';
             rightArrow.style.backgroundColor = '#555555';
             zoomInBtn.style.background = '#555555';
             zoomOutBtn.style.background = '#555555';
         });
+    
         frame.addEventListener('touchstart', () => {
-            stopAutoRotateOnce();
+            stopAutoRotate();
         });
     });
+    
 
     // Event listener for stopping rotation when mousedown (or touchstart on mobile) on the frame
     frame.addEventListener('mousedown', () => {
