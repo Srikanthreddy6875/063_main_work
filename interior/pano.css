@@ -58,19 +58,18 @@
     object-fit: contain;
 }
 
-li {
-    list-style: none;
+span {
     position: absolute;
-    top: 8px;
+    top: 5px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001;
 
 }
 
-li a {
+span a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 17px;
     padding: 3px 11px;
     background-color: #929090;
     color: white;
@@ -95,7 +94,7 @@ li a {
 }
 
 .actionicons {
-    font-size: 28px;
+    font-size: 25px;
     cursor: pointer;
     margin: 0 10px;
     background-color: #555555;
@@ -189,11 +188,11 @@ li a {
         text-align: center;
         border-radius: 2px;
     }
-    li {
+    span {
         top: 9px;
     }
 
-    li a {
+    span a {
         font-size: 19px;
         padding: 3px 7px;
     }
@@ -231,11 +230,11 @@ li a {
         text-align: center;
         border-radius: 2px;
     }
-    li {
+    span {
         top: 5px;
     }
 
-    li a {
+    span a {
         font-size: 14px;
         padding: 3px 7px;
     }
@@ -272,11 +271,11 @@ li a {
         text-align: center;
         border-radius: 2px;
     }
-    li {
+    span {
         top: 5px;
     }
 
-    li a {
+    span a {
         font-size: 13px;
         padding: 3px 7px;
     }
@@ -314,11 +313,11 @@ li a {
         text-align: center;
         border-radius: 2px;
     }
-    li {
+    span {
         top: 5px;
     }
 
-    li a {
+    span a {
         font-size: 13px;
         padding: 3px 7px;
     }
@@ -359,11 +358,11 @@ li a {
         border-radius: 2px;
     }
 
-    li {
+    span {
         top: 5px;
     }
 
-    li a {
+    span a {
         font-size: 13px;
         padding: 3px 7px;
     }
