@@ -25,19 +25,16 @@
 
     let zoomFactor = 1; //initially zoom level
     const zoomStep = 0.2 // The zoom increases/decreases per step
-    const maxZoom = 5;
+    const maxZoom = 4;
     const minZoom = 1;
 
     let isZoomed = false;
     let initialPinchDistance = null;// Initial distance between two touch points
     let initialZoomFactor = 1;
     let cumulativeRotation = 0;
-    let hasAutoRotatedOnce = false;
 
     let holdInterval; // To store the interval ID
-    let holdDelay = 80; // Delay in milliseconds for continuous frame change from left & right
     let zoomHoldInterval; // To store the interval ID for zoom hold
-    const zoomHoldDelay = 80; // Delay in milliseconds for continuous zooming
 
     function updateFrame() {
         frame.src = toggleView.checked ? `range-open/${currentFrame}.jpg` : `range/${currentFrame}.jpg`;
@@ -58,7 +55,6 @@
     function limitImagePosition() {
         const containerRect = card.getBoundingClientRect();
         const imageRect = frame.getBoundingClientRect();
-    
         // Calculate max allowable offsets based on zoom
         const maxOffsetX = Math.max(0, (imageRect.width - containerRect.width) / 3 / zoomFactor);
         const maxOffsetY = Math.max(0, (imageRect.height - containerRect.height) / 3 / zoomFactor);
@@ -67,10 +63,7 @@
         frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
         frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
     
-        // Apply transformations
-        frame.style.transform = `scale(${zoomFactor}) translate(${frameOffsetX}px, ${frameOffsetY}px)`;
-        console.log("zoomFactor",zoomFactor);
-        
+        frame.style.transform = `scale(${zoomFactor}) translate(${frameOffsetX}px, ${frameOffsetY}px)`;        
     }
     
 
@@ -85,8 +78,8 @@
             frame.style.cursor = 'all-scroll';
             const containerRect = card.getBoundingClientRect();
             const imageRect = frame.getBoundingClientRect();
-            const maxOffsetX = (imageRect.width - containerRect.width) / 6 / zoomFactor;
-            const maxOffsetY = (imageRect.height - containerRect.height) / 6 / zoomFactor;
+            const maxOffsetX = (imageRect.width - containerRect.width) / 5 / zoomFactor;
+            const maxOffsetY = (imageRect.height - containerRect.height) / 5 / zoomFactor;
 
             frameOffsetX = Math.min(maxOffsetX, Math.max(-maxOffsetX, frameOffsetX));
             frameOffsetY = Math.min(maxOffsetY, Math.max(-maxOffsetY, frameOffsetY));
@@ -120,7 +113,6 @@
             // Check if the specified number of rotations is complete
             if (frameCount >= framesPerRotation) {
                 clearInterval(autoRotateOnceInterval);
-                hasAutoRotatedOnce = true;
             }
         }, 100);
     }
@@ -298,7 +290,7 @@
                 rotateLoader('left');
             }
             updateFrame();
-        }, holdDelay);
+        }, 80);
     };
     
     const stopHoldRotation = () => {
@@ -358,7 +350,7 @@
             }
             isZoomed = zoomFactor > 1;
             updateZoom();
-        }, zoomHoldDelay);
+        }, 80);
     };
     
     const stopZoomHold = () => {
